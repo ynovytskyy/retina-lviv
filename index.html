@@ -120,7 +120,7 @@
 				$("#registration-modal").hide();
 				$(".liqpay-widget-wrapper").show();
 
-				$.ajax("http://localhost/retina-pay", {
+				$.ajax("http://www.lvivmedicalcenter.com/api/retina-pay", {
 					method: "POST",
 					data: {
 						name,
@@ -137,7 +137,7 @@
 							language: "uk",
 							mode: "embed"
 						}).on("liqpay.callback", function(data) {
-							$.ajax("http://localhost/retina-register", {
+							$.ajax("http://www.lvivmedicalcenter.com/api/retina-register", {
 								method: "POST",
 								data: {
 									status: data.status,
