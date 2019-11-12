@@ -16,16 +16,14 @@
     <link rel="stylesheet" type="text/css" href="./static/banner-styles.css">
     <link rel="stylesheet" type="text/css" href="./static/iconochive.css">
     <script type="text/javascript" src="./static/analytics.js"></script>
-    <script type="text/javascript" src="./static/ait-client-rewrite.js"></script>
-    <script type="text/javascript" src="./static/wbhack.js"></script>
   </head>
 
   <body class="index scrollme page-scroll" id="page-top" data-gr-c-s-loaded="true">
     <!-- BEGIN WAYBACK TOOLBAR INSERT -->
-    <script type="text/javascript" src="./static/timestamp.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./static/graph-calc.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./static/auto-complete.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./static/toolbar.js" charset="utf-8"></script>
+    <!-- <script type="text/javascript" src="./static/timestamp.js" charset="utf-8"></script> -->
+    <!-- <script type="text/javascript" src="./static/graph-calc.js" charset="utf-8"></script> -->
+    <!-- <script type="text/javascript" src="./static/auto-complete.js" charset="utf-8"></script> -->
+    <!-- <script type="text/javascript" src="./static/toolbar.js" charset="utf-8"></script> -->
     <style type="text/css">
       body {
         margin-top: 0 !important;
@@ -67,7 +65,111 @@
       .wb-autocomplete-suggestion.selected {
         background: #f0f0f0;
       }
-    </style>
+	</style>
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
+	<script>
+		function calcAmount() {
+			let amount = 1200;
+			if ($("input[name=isDoctor]:checked").val() !== "doctor") {
+				amount = 700;
+			}
+			if ($("#dinner").is(":checked")) {
+				amount += 800;
+			}
+			$("#total-money").html(amount);
+		}
+
+		$(document).ready(() => {
+			calcAmount();
+
+			$("#registration-button").click(() => {
+				$("#registration-modal").show();
+			});
+
+			$(".liqpay-widget-close-button").click(() => {
+				$(".liqpay-widget-wrapper").hide();
+			});
+
+			$(".registration-close-button").click(() => {
+				$("#registration-modal").hide();
+			});
+
+			$("input[name=isDoctor]").change((e) => {
+				calcAmount();
+			});
+
+			$("#dinner").change((e) => {
+				calcAmount();
+			});
+
+			$("#register-form").submit((e) => {
+				e.preventDefault();
+
+				const degree = $("input[name=isDoctor]:checked").val();
+				const dinner = $("#dinner").is(":checked");
+				const name = $("#name").val();
+				const email = $("#email").val();
+				const country = $("#register-country").val();
+				const city = $("#register-city").val();
+				const phone = $("#phone").val();
+				const message = $("#message").val();
+
+				$("#registration-modal").hide();
+				$(".liqpay-widget-wrapper").show();
+
+				$.ajax("http://localhost/retina-pay", {
+					method: "POST",
+					data: {
+						name,
+						email,
+						degree,
+						dinner,
+						lang: 'uk'
+					},
+					success: (res) => {
+						LiqPayCheckout.init({
+							data: res.data,
+							signature: res.signature,
+							embedTo: "#liqpay-widget",
+							language: "uk",
+							mode: "embed"
+						}).on("liqpay.callback", function(data) {
+							$.ajax("http://localhost/retina-register", {
+								method: "POST",
+								data: {
+									status: data.status,
+									name,
+									email,
+									degree,
+									dinner,
+									country,
+									city,
+									phone,
+									message
+								},
+								success: (res) => {
+									console.log(res);
+								}
+							});
+						});
+					}
+				});
+				
+			});
+
+			// Smooth scroll
+			$(document).on('click', 'a[href^="#"]', function (event) {
+				event.preventDefault();
+
+				$('html, body').animate({
+					scrollTop: $($.attr(this, 'href')).offset().top - 122
+				}, 1000);
+			});
+		});
+	</script>
     <div id="wm-ipp-base" lang="en" style="display: block; direction: ltr;">
     </div>
 
@@ -116,8 +218,8 @@
             <a class="page-scroll" href="#schedule">
               <div class="btn btn-default btn-xl nav-btnee">Програма</div>
             </a>
-            <a class="page-scroll" href="#schedule" style="display: none;">
-              <div class="btn btn-default btn-xl nav-btnee">Реєстрація</div>
+            <a class="page-scroll">
+              <div class="btn btn-default btn-xl nav-btnee" id="registration-button">Реєстрація</div>
             </a>
             <a class="page-scroll" href="#put-theme">
               <div class="btn btn-default btn-xl nav-btnee">Подання тез</div>
@@ -129,7 +231,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: none;">
             <a class="btn btn-xl nav-btnee"
               href="https://www.facebook.com/pg/oculus.medicalcenter/photos/?tab=album&amp;album_id=1026821807388372"
-              target="_blank">Retina Lviv 2016</a>
+              target="_blank">Retina Lviv 2020</a>
           </div>
         </div>
 
@@ -286,21 +388,28 @@
             href="http://www.ipmedical.com.ua/index.html?locale=ua"
             target="_blank"><img src="./static/ip-medical.jpg"></a></div>
       </div>
-    </div>
+	</div>
+	
+	<div class="liqpay-widget-wrapper">
+		<div class="liqpay-widget-close-button">x</div>
+		<div class="liqpay-widget" id="liqpay-widget"></div>
+	</div>
 
-    <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog">
+    <div class="modal" id="registration-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg" role="document">
         <form class="modal-content" id="register-form" name="registerForm">
-          <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">×</span></button>
+          <div class="modal-header">
+				<button class="close registration-close-button" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
             <h4 class="modal-title">Реєстрація</h4>
           </div>
           <div class="modal-body">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                  <div class="form-group"><label for="name">Ім'я та прізвище, ПІБ</label><input class="form-control"
-                      id="name" name="name" type="text" placeholder="Ім&#39;я та прізвище, ПІБ" aria-describedby="name"
+                  <div class="form-group"><label for="name">Ім'я та прізвище</label><input class="form-control"
+                      id="name" name="name" type="text" placeholder="Ім&#39;я та прізвище" aria-describedby="name"
                       required="true" autofocus="true"
                       style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
                   </div>
@@ -314,7 +423,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                   <div class="form-group"><label for="register-country">Країна</label><input class="form-control"
                       id="register-country" name="register-country" type="text" placeholder="Країна"
-                      aria-describedby="register country" required="true"></div>
+                      aria-describedby="register country" required="true" value="Україна"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                   <div class="form-group"><label for="email">Місто</label><input class="form-control" id="register-city"
@@ -328,9 +437,9 @@
                       type="tel" name="phone" placeholder="Телефон" aria-describedby="phone" required="true"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                  <div class="form-group"><label for="register-work-place">Місце роботи</label><input
-                      class="form-control" id="register-work-place" type="text" name="register-work-place"
-                      placeholder="Місце роботи" aria-describedby="working place" required="true"></div>
+					<div class="form-group"><label for="phone">Повідомлення</label><textarea class="form-control"
+						id="message" name="message" placeholder="Повідомлення" aria-describedby="message" rows="4"
+						width="100%"></textarea></div>
                 </div>
               </div>
               <div class="row">
@@ -342,31 +451,31 @@
                           <div class="form-group" id="ticket-version"><label class="radio-inline"><input id="isDoctor"
                                 type="radio" name="isDoctor" value="doctor" required="true" checked="">
                               Лікар</label><label class="radio-inline"><input id="isIntern" type="radio" name="isDoctor"
-                                value="intern" required="true">Студент чи інтерн</label></div>
+                                value="intern" required="true">Інтерн</label></div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                           <div class="form-group"><label class="checkbox-inline"><input id="dinner" type="checkbox"
-                                name="dinner" checked=""> Включно із вечерею</label></div>
+                                name="dinner" checked="">Фуршет</label></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                  <div class="form-group"><label for="phone">Повідомлення</label><textarea class="form-control"
-                      id="message" name="message" placeholder="Повідомлення" aria-describedby="message" rows="4"
-                      width="100%"></textarea></div>
+                  
                 </div>
-              </div>
+			  </div>
+			  <div class="row precaution">Увага: для завершення реєстрації Вам необхідно буде оплатити участь у конференції.</div>
             </div>
           </div>
           <div class="modal-footer registration-modal-footer">
-            <h5 class="amount-due" data-dismiss="modal">Сума до сплати :<span id="total-money"> 2500 грн</span></h5>
+            <h5 class="amount-due" data-dismiss="modal">Сума до оплати:&nbsp;<span id="total-money">0</span>&nbsp;грн.</h5>
             <span class="finish-message"><span id="finish-message">Для завершення реєстрації здійсність
                 оплату</span></span><span id="pay-insert-area"></span><span id="pay-hide-area"><button
-                class="btn btn-default" id="register-pay-after" type="button"
-                data-dismiss="modal">Закрити</button><button class="btn btn-primary" id="register-submit"
-                type="submit">Зареєструватись</button></span>
+                class="btn btn-default registration-close-button" id="register-pay-after" type="button"
+				data-dismiss="modal">Закрити</button>
+				<button class="btn btn-primary" id="registration-submit-button" type="submit">Зареєструватись</button>
+			</span>
           </div>
         </form>
       </div>
@@ -698,7 +807,7 @@
       </div>
     </div>
     
-    <hr>
+    <!-- <hr>
     <div class="modal fade" id="theses-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg" role="document">
         <form class="modal-content" name="themesForm" onsubmit="return false">
@@ -775,7 +884,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
 
     <div class="container tezy" id="put-theme">
       <div class="row">
@@ -873,7 +982,7 @@
             <div class="row">
               <div class="col-lg-3 bold copyright">Організатори:</div>
               <div class="col-lg-9 text-left">
-                <div class="row">
+                <div class="row organizer">
                   <div class="col-xs-5">
                     <div class="text-right">Андрій Ревич :</div>
                   </div>
@@ -905,8 +1014,9 @@
           </div>
         </div>
       </div>
-    </footer>
-
-    <script src="./static/bundle.18cebbfd00e4b975f12d.js" async="true"></script>
+	</footer>
+	
+	<script src="https://static.liqpay.ua/libjs/checkout.js" async></script>
+    <!-- <script src="./static/bundle.18cebbfd00e4b975f12d.js" async="true"></script> -->
   </body>
 </html>
