@@ -4338,6 +4338,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-right: -15px;
   margin-left: -15px;
 }
+@media (max-width: 767px) {
+  .container > #bs-example-navbar-collapse-1{
+    display: none;
+  }
+}
 @media (min-width: 768px) {
   .container > .navbar-header,
   .container-fluid > .navbar-header,
@@ -6246,8 +6251,8 @@ button.close {
 }
 .modal-dialog {
   position: relative;
-  width: auto;
-  margin: 10px;
+  width: 95%;
+  margin: 10px auto;
 }
 .modal-content {
   position: relative;
@@ -11168,16 +11173,20 @@ body {
   padding: 0 4px;
 }
 
+
 .partners .partners-column {
   flex: 25%;
   max-width: 25%;
   padding: 10px 4px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .partners .partners-column img {
-  margin-top: 28px;
-  vertical-align: middle;
+  margin: 0;
+  width: 100%;
+  padding: 10px;
 }
 
 @media (max-width: 800px) {
@@ -11244,6 +11253,11 @@ body {
 .registration .card-body {
   min-height: 268px;
 }
+
+#registration-modal{
+  overflow: auto;
+}
+
 #registration-modal .modal-footer form[method="POST"] {
   display: inline-block;
 }
@@ -11312,6 +11326,12 @@ body {
   border-radius: 5px;
   font-size: 1.3em;
   line-height: 1.6em;
+}
+@media(max-width: 500px){
+  .lviv-location .contact {
+    width: 320px;
+    height: auto;
+  }
 }
 
 .lviv-location .contact hr {
@@ -11383,6 +11403,12 @@ body {
   width: 360px;
   height: auto;
   margin: 34px auto 40px auto;
+}
+
+@media (max-width: 768px){
+  .speaker-wrap .img-speaker {
+    width: 290px;
+  }
 }
 
 .intro-text h3 {

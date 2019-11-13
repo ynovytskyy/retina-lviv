@@ -52,10 +52,10 @@
   font-size:inherit;
 }
 #wm-ipp form input {
-  padding:1px !important;
-  height:auto;
-  display:inline;
-  margin:0;
+  padding: 1px !important;
+  height: auto;
+  display: inline;
+  margin: 0;
   color: #000;
   background: none #fff;
   border: 1px solid #666;
