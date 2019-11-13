@@ -170,14 +170,20 @@
 			});
 
 			// Smooth scroll
-			$(document).on('click', 'a[href^="#"]', function (event) {
-				event.preventDefault();
-
-				$('html, body').animate({
+      $(document).on('click', 'a[href^="#"]', function (event) {
+        event.preventDefault();
+        if (window.matchMedia('(max-width: 768px)').matches) {
+          $('html, body').animate({
+					scrollTop: $($.attr(this, 'href')).offset().top - 73
+        }, 1000);
+        }else{
+          $('html, body').animate({
 					scrollTop: $($.attr(this, 'href')).offset().top - 122
-				}, 1000);
+        }, 1000);
+        }
 			});
-		});
+    });
+    
 	</script>
     <div id="wm-ipp-base" lang="en" style="display: block; direction: ltr;">
     </div>
@@ -362,6 +368,7 @@
             target="_blank"><img src="./static/oculus.png"></a>
             <a href="http://worldmedicine.com.tr/en/" target="_blank"><img
               src="./static/world-medicine.png" width="320px" height="auto"></a>
+            <a href="https://simesta.com/" target="_blank"><img src="./static/simesta.png"></a>
               <!-- <a href="http://www.valeant.com/" target="_blank"><img
               src="./static/para.png"></a> -->
               <!-- <a href="http://nivamedservice.com/" target="_blank"><img
