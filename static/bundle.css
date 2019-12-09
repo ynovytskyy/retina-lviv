@@ -11546,7 +11546,7 @@ playback timings (ms):
     height: 30px;
     display: block;
     border-radius: 50%;
-    border: solid 2px #00AA00;
+    border: solid 2px #AA0000;
     z-index: 9999999;
     display: flex;
     justify-content: center;
@@ -11556,4 +11556,15 @@ playback timings (ms):
     font-size: 15px;
 	text-transform: uppercase;
 	cursor: pointer;
+}
+
+.liqpay-widget {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.liqpay-widget img {
+	padding: 30px;
 }
