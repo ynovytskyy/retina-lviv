@@ -11183,6 +11183,14 @@ body {
   flex-direction: column;
 }
 
+.partners .partners-column a {
+	min-height: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .partners .partners-column img {
   margin: 0;
   width: 100%;
