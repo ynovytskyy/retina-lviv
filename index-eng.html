@@ -70,12 +70,12 @@
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script>
 			function calcAmount() {
-				let amount = 70;
+				let amount = 80;
 				if ($("input[name=isDoctor]:checked").val() !== "doctor") {
-					amount = 50;
+					amount = 60;
 				}
 				if ($("#dinner").is(":checked")) {
-					amount += 40;
+					amount += 50;
 				}
 				$("#total-money").html(amount);
 			}
