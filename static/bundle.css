@@ -11184,7 +11184,7 @@ body {
 }
 
 .partners .partners-column a {
-	min-height: 120px;
+	min-height: 160px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
