@@ -32,6 +32,34 @@
 				/*min-width:800px !important;*/
 			}
 
+			.covid-19-alert {
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				background: rgba(0, 0, 0, 0.5);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 1000000;
+			}
+
+			.covid-19-alert .content {
+				width: 60%;
+				background: #FFFFFF;
+				display: block;
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.covid-19-alert .content .text {
+				text-align: center;
+				padding: 0 0 20px 0;
+				font-size: 18px;
+				color: #000000;
+			}
+
 			.wb-autocomplete-suggestions {
 				text-align: left;
 				cursor: default;
@@ -114,6 +142,10 @@
 					calcAmount();
 				});
 
+				$("#covid-19-close-button").click(() => {
+					$(".covid-19-alert").hide();
+				});
+
 				$("#register-form").submit((e) => {
 					e.preventDefault();
 
@@ -185,6 +217,19 @@
 				});
 			});
 		</script>
+
+		<div class="covid-19-alert">
+			<div class="content">
+				<div class="text">
+					Увага!<br/><br />
+					У зв'язку з швидким поширенням коронавірусу COVID-2019 у Європі та Україні,
+					симпозіум "RETINA LVIV 2020" <b>переноситься</b> на невизначений термін.
+					Сподіваємось на Ваше розуміння. Слідкуйте за подальшою інформацією на нашому сайті.
+				</div>
+				<button id="covid-19-close-button">Закрити</button>
+			</div>
+		</div>
+
 		<div id="wm-ipp-base" lang="en" style="display: block; direction: ltr;">
 		</div>
 
