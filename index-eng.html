@@ -201,7 +201,7 @@
 					$("#registration-modal").hide();
 					$(".liqpay-widget-wrapper").show();
 
-					$.ajax("http://retina.1gb.ua/api.php?type=pay", {
+					$.ajax("https://www.maryaro.com.ua/retina/api.php?type=pay", {
 						method: "POST",
 						data: {
 							name,
@@ -219,7 +219,7 @@
 								language: "en",
 								mode: "embed"
 							}).on("liqpay.callback", function (data) {
-								$.ajax("http://retina.1gb.ua/api.php?type=register", {
+								$.ajax("https://www.maryaro.com.ua/retina/api.php?type=register", {
 									method: "POST",
 									data: {
 										status: data.status,
