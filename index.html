@@ -116,12 +116,25 @@
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script>
 			function calcAmount() {
-				let amount = 1400;
-				if ($("input[name=isDoctor]:checked").val() !== "doctor") {
-					amount = 800;
+				let amount = 0;
+				if ($("#online").is(":checked")) {
+					if ($("input[name=isDoctor]:checked").val() === "doctor") {
+						amount = 1400;
+					}
+					else {
+						amount = 700;
+					}
 				}
-				if ($("#dinner").is(":checked")) {
-					amount += 1000;
+				else {
+					if ($("input[name=isDoctor]:checked").val() === "doctor") {
+						amount = 1800;
+					}
+					else {
+						amount = 1000;
+					}
+					if ($("#dinner").is(":checked")) {
+						amount += 800;
+					}
 				}
 				$("#total-money").html(amount);
 			}
@@ -159,6 +172,16 @@
 					calcAmount();
 				});
 
+				$("#online").change((e) => {
+					if ($("#online").is(":checked")) {
+						$("#dinner").parent().css("visibility", "hidden");
+					}
+					else {
+						$("#dinner").parent().css("visibility", "visible");
+					}
+					calcAmount();
+				});
+
 				$("#covid-19-close-button").click(() => {
 					$(".covid-19-alert").hide();
 				});
@@ -168,6 +191,7 @@
 
 					const degree = $("input[name=isDoctor]:checked").val();
 					const dinner = $("#dinner").is(":checked");
+					const online = $("#online").is(":checked");
 					const name = $("#name").val();
 					const email = $("#email").val();
 					const country = $("#register-country").val();
@@ -178,13 +202,14 @@
 					$("#registration-modal").hide();
 					$(".liqpay-widget-wrapper").show();
 
-					$.ajax("http://www.lvivmedicalcenter.com/api/retina-pay", {
+					$.ajax("http://retina.1gb.ua/api.php?type=pay", {
 						method: "POST",
 						data: {
 							name,
 							email,
 							degree,
 							dinner,
+							online,
 							lang: 'uk'
 						},
 						success: (res) => {
@@ -195,7 +220,7 @@
 								language: "uk",
 								mode: "embed"
 							}).on("liqpay.callback", function (data) {
-								$.ajax("http://www.lvivmedicalcenter.com/api/retina-register", {
+								$.ajax("http://retina.1gb.ua/api.php?type=register", {
 									method: "POST",
 									data: {
 										status: data.status,
@@ -203,6 +228,7 @@
 										email,
 										degree,
 										dinner,
+										online,
 										country,
 										city,
 										phone,
@@ -298,7 +324,7 @@
 							<div class="btn btn-default btn-xl nav-btnee">Програма</div>
 						</a>
 						<a class="page-scroll">
-							<div style="display: none;" class="btn btn-default btn-xl nav-btnee" id="registration-button">Реєстрація</div>
+							<div class="btn btn-default btn-xl nav-btnee" id="registration-button">Реєстрація</div>
 						</a>
 						<a class="page-scroll" href="#put-theme">
 							<div class="btn btn-default btn-xl nav-btnee">Подання тез</div>
@@ -564,9 +590,18 @@
 																value="intern" required="true">Інтерн</label></div>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-													<div class="form-group"><label class="checkbox-inline"><input
-																id="dinner" type="checkbox" name="dinner"
-																checked="">Фуршет</label></div>
+													<div class="form-group">
+														<label class="checkbox-inline">
+															<input id="dinner" type="checkbox" name="dinner" checked="" />Фуршет
+														</label>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+													<div class="form-group">
+														<label class="checkbox-inline">
+															<input id="online" type="checkbox" name="online" />ONLINE
+														</label>
+													</div>
 												</div>
 											</div>
 										</div>
