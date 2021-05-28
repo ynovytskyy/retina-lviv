@@ -13,7 +13,7 @@
 		<meta name="Retina" content="Retina Lviv">
 
 		<link rel="stylesheet" type="text/css" href="./static/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="./static/bundle.css?5">
+		<link rel="stylesheet" type="text/css" href="./static/bundle.css?6">
 		<link rel="stylesheet" type="text/css" href="./static/banner-styles.css">
 		<link rel="stylesheet" type="text/css" href="./static/iconochive.css">
 		<script type="text/javascript" src="./static/analytics.js"></script>
@@ -324,7 +324,7 @@
 							<div class="btn btn-default btn-xl nav-btnee">Програма</div>
 						</a>
 						<a class="page-scroll">
-							<div class="btn btn-default btn-xl nav-btnee" style="display: none;" id="registration-button">Реєстрація</div>
+							<div class="btn btn-default btn-xl nav-btnee" id="registration-button">Реєстрація онлайн</div>
 						</a>
 						<a class="page-scroll" href="#put-theme">
 							<div class="btn btn-default btn-xl nav-btnee">Подання тез</div>
@@ -344,7 +344,7 @@
 		</header>
 
 		<div class="alert-banner">
-			<span>Реєстрація закрита!</span><span class="description">вільних місць немає</span>
+			<span>OFFLINE реєстрація закрита!</span><span class="description">вільних місць немає</span>
 		</div>
 
 		<div class="container" id="about">
@@ -535,7 +535,7 @@
 							aria-label="Close">
 							<span aria-hidden="true">×</span>
 						</button>
-						<h4 class="modal-title">Реєстрація</h4>
+						<h4 class="modal-title">Реєстрація онлайн</h4>
 					</div>
 					<div class="modal-body">
 						<div class="container-fluid">
@@ -593,17 +593,17 @@
 																id="isIntern" type="radio" name="isDoctor"
 																value="intern" required="true">Інтерн</label></div>
 												</div>
-												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5" style="display: none;">
 													<div class="form-group">
 														<label class="checkbox-inline">
-															<input id="dinner" type="checkbox" name="dinner" checked="" />Фуршет
+															<input id="dinner" type="checkbox" name="dinner" disabled />Фуршет
 														</label>
 													</div>
 												</div>
-												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5" style="display: none;">
 													<div class="form-group">
 														<label class="checkbox-inline">
-															<input id="online" type="checkbox" name="online" />ONLINE
+															<input id="online" type="checkbox" name="online" checked disabled />ONLINE
 														</label>
 													</div>
 												</div>
