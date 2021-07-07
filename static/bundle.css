@@ -11600,3 +11600,32 @@ playback timings (ms):
 		width: initial;
 	}
 }
+
+.program-table,
+.program-table tr,
+.program-table tr td {
+	margin: 0;
+	padding: 0;
+}
+
+.program-table {
+	border-top: solid 1px #000000;
+	border-left: solid 1px #000000;
+}
+
+.program-table tr td {
+	border-bottom: solid 1px #000000;
+	border-right: solid 1px #000000;
+	padding: 10px;
+}
+
+.program-table tr td.time {
+	white-space: nowrap;
+	background-color: #fed136;
+}
+
+.program-table tr td.header {
+	background-color: #fed136;
+	font-weight: bold;
+	text-align: center;
+}
