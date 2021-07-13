@@ -11617,6 +11617,11 @@ playback timings (ms):
 	border-bottom: solid 1px #000000;
 	border-right: solid 1px #000000;
 	padding: 10px;
+	text-align: center;
+}
+
+.program-table tr td span.eng {
+	font-size: 70%;
 }
 
 .program-table tr td.time {
