@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<style>
+			.main {
+				width: 800px;
+				height: 600px;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+
+			.main img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+			}
+
+			.main a {
+				text-decoration: none;
+				color: #3b4665;
+				border: solid 3px #3b4665;
+				padding: 10px;
+				display: inline-block;
+				text-align: center;
+				font-family: Verdana;
+				font-size: 16px;
+				text-transform: uppercase;
+				z-index: 2;
+			}
+
+			.main a .eng {
+				font-size: 70%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<img width="800" src="static/images/invitaion-email-bg.jpg" />
+			<a href="https://www.retina-lviv.com/video.html">
+				Перейти
+				<br />
+				<span class="eng">View</span>
+			</a>
+		</div>
+	</body>
+</html>
