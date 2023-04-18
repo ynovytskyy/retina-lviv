@@ -15,7 +15,7 @@
 		<meta name="test" content="test">
 
 		<link rel="stylesheet" type="text/css" href="./static/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="./static/bundle.css?10">
+		<link rel="stylesheet" type="text/css" href="./static/bundle.css?11">
 		<link rel="stylesheet" type="text/css" href="./static/banner-styles.css">
 		<link rel="stylesheet" type="text/css" href="./static/iconochive.css">
 		<script type="text/javascript" src="./static/analytics.js"></script>
@@ -121,21 +121,21 @@
 				let amount = 0;
 				if ($("#online").is(":checked")) {
 					if ($("input[name=isDoctor]:checked").val() === "doctor") {
-						amount = 1400;
+						amount = 2000;
 					}
 					else {
-						amount = 700;
+						amount = 1000;
 					}
 				}
 				else {
 					if ($("input[name=isDoctor]:checked").val() === "doctor") {
-						amount = 2100;
+						amount = 3000;
 					}
 					else {
-						amount = 1200;
+						amount = 1500;
 					}
 					if ($("#dinner").is(":checked")) {
-						amount += 1000;
+						amount += 2000;
 					}
 				}
 				$("#total-money").html(amount);
@@ -595,29 +595,24 @@
 										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 											<div class="row">
 												<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-													<div class="form-group" id="ticket-version"><label
-															class="radio-inline"><input id="isDoctor" type="radio"
-																name="isDoctor" value="doctor" required="true"
-																checked="">
-															Лікар</label><label class="radio-inline"><input
-																id="isIntern" type="radio" name="isDoctor"
-																value="intern" required="true">Інтерн</label></div>
-												</div>
-												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5"
-													style="display: none;">
-													<div class="form-group">
-														<label class="checkbox-inline">
-															<input id="dinner" type="checkbox" name="dinner"
-																disabled />Фуршет
+													<div class="form-group" id="ticket-version">
+														<label class="radio-inline">
+															<input id="isDoctor" type="radio" name="isDoctor" value="doctor" required="true" checked="">
+															Лікар
+														</label>
+														<label class="radio-inline">
+															<input id="isIntern" type="radio" name="isDoctor" value="intern" required="true">
+															Лікар-член УВРТ або інтерн
 														</label>
 													</div>
 												</div>
-												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5"
-													style="display: none;">
+												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
 													<div class="form-group">
 														<label class="checkbox-inline">
-															<input id="online" type="checkbox" name="online" checked
-																disabled />ONLINE
+															<input id="online" type="checkbox" name="online" />ONLINE
+														</label>
+														<label class="checkbox-inline">
+															<input id="dinner" type="checkbox" name="dinner" />Товариська вечеря
 														</label>
 													</div>
 												</div>
