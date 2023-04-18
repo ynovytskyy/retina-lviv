@@ -187,6 +187,18 @@ td,
 th {
   padding: 0;
 }
+ol li {
+  font-size: 21px;
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+b {
+  font-size: 21px;
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+i {
+  font-size: 21px;
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
   *,
@@ -2774,7 +2786,7 @@ input[type="search"] {
 .radio-inline + .radio-inline,
 .checkbox-inline + .checkbox-inline {
   margin-top: 0;
-  margin-left: 10px;
+  
 }
 input[type="radio"][disabled],
 input[type="checkbox"][disabled],
