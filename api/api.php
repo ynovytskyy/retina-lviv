@@ -1,64 +1,70 @@
 <?php
+	header("Access-Control-Allow-Headers: *");
+	header("Access-Control-Allow-Origin: https://www.retina-lviv.com");
+	
 	date_default_timezone_set("Europe/Kiev");
 	error_reporting(E_ALL);
 	ini_set('display_errors', '0');
 	
-	require(__DIR__ . "/config.php");
-	require(__DIR__ . "/vendor/autoload.php");
+	define("LIQPAY_PUBLIC_KEY", "i54342120268");
+	define("LIQPAY_PRIVATE_KEY", "gk1Fxl4AD1NNgtqzqPVNnxD0Q1fFfr6hQrV1ImnU");
+	define("GMAIL_LOGIN", "erebor@oculus.lviv.ua");
+	define("GMAIL_PASS", "RqeXDankge");
+	define("ADMIN_EMAIL", "retinalviv@gmail.com");
+	define("YEAR", "2023");
 	
+	require(__DIR__ . "/vendor/autoload.php");
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 	
 	$prices = [
 		'uk' => [
 			'offline' => [
-				strtotime("2021-04-01 00:00:00") => [ // before
-					'doctor' => 1800,
-					'intern' => 1000,
-					'dinner' => 800
+				strtotime("2023-05-21 00:00:00") => [ // before
+					'doctor' => 3000,
+					'intern' => 1500,
+					'dinner' => 2000
 				],
-				strtotime("2021-05-16 00:00:00") => [ // before
-					'doctor' => 2100,
-					'intern' => 1200,
-					'dinner' => 1000
+				strtotime("2023-06-21 00:00:00") => [ // before
+					'doctor' => 3500,
+					'intern' => 2000,
+					'dinner' => 2500
 				],
-				strtotime("2022-01-01 00:00:00") => [ // before
-					'doctor' => 2500,
-					'intern' => 1400,
-					'dinner' => 1200
+				strtotime("2024-01-01 00:00:00") => [ // before
+					'doctor' => 4000,
+					'intern' => 3000,
+					'dinner' => 3000
 				]
 			],
 			'online' => [
-				'doctor' => 1400,
-				'intern' => 700
+				'doctor' => 2000,
+				'intern' => 1000
 			]
 		],
-		'en' => [
-			'offline' => [
-				strtotime('2021-04-01 00:00:00') => [ // before
-					'doctor' => 70,
-					'intern' => 50,
-					'dinner' => 40
-				],
-				strtotime('2021-05-16 00:00:00') => [ // before
-					'doctor' => 80,
-					'intern' => 60,
-					'dinner' => 50
-				],
-				strtotime('2022-01-01 00:00:00') => [ // before
-					'doctor' => 90,
-					'intern' => 70,
-					'dinner' => 60
-				]
-			],
-			'online' => [
-				'doctor' => 70,
-				'intern' => 35
-			]
-		]
+		// 'en' => [
+			// 'offline' => [
+				// strtotime('2021-04-01 00:00:00') => [ // before
+					// 'doctor' => 70,
+					// 'intern' => 50,
+					// 'dinner' => 40
+				// ],
+				// strtotime('2021-05-16 00:00:00') => [ // before
+					// 'doctor' => 80,
+					// 'intern' => 60,
+					// 'dinner' => 50
+				// ],
+				// strtotime('2022-01-01 00:00:00') => [ // before
+					// 'doctor' => 90,
+					// 'intern' => 70,
+					// 'dinner' => 60
+				// ]
+			// ],
+			// 'online' => [
+				// 'doctor' => 70,
+				// 'intern' => 35
+			// ]
+		// ]
 	];
-	
-	header("Access-Control-Allow-Origin: http://0.0.0.0:1313");
 	
 	$now = time();
 	
@@ -116,8 +122,8 @@
 			if ($lang === "uk") {
 				$description = "Retina " . YEAR . ": "
 					. $name . " (" . $email . "): "
-					. ($degree === "doctor" ? "Лікар" : "Інтерн")
-					. (($dinner && !$online) ? " + фуршет" : "")
+					. ($degree === "doctor" ? "Лікар" : "Член УВРТ або інтерн")
+					. (($dinner && !$online) ? " + вечеря" : "")
 					. ($online ? " ONLINE" : "");
 
 				$currency = "UAH";
@@ -126,8 +132,8 @@
 			else {
 				$description = "Retina " . YEAR . ": "
 					. $name . " (" . $email . "): "
-					. ($degree === "doctor" ? "Doctor" : "Intern")
-					. (($dinner && !$online) ? " + gala dinner" : "")
+					. ($degree === "doctor" ? "Doctor" : "UVRS member or intern")
+					. (($dinner && !$online) ? " + dinner" : "")
 					. ($online ? " ONLINE" : "");
 
 				$currency = "EUR";
