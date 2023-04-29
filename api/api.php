@@ -132,7 +132,7 @@
 			else {
 				$description = "Retina " . YEAR . ": "
 					. $name . " (" . $email . "): "
-					. ($degree === "doctor" ? "Doctor" : "Intern or member of UVRS")
+					. ($degree === "doctor" ? "Doctor" : "Resident")
 					. (($dinner && !$online) ? " + dinner" : "")
 					. ($online ? " ONLINE" : "");
 
