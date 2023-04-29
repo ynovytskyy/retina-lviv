@@ -41,29 +41,29 @@
 				'intern' => 1000
 			]
 		],
-		// 'en' => [
-			// 'offline' => [
-				// strtotime('2021-04-01 00:00:00') => [ // before
-					// 'doctor' => 70,
-					// 'intern' => 50,
-					// 'dinner' => 40
-				// ],
-				// strtotime('2021-05-16 00:00:00') => [ // before
-					// 'doctor' => 80,
-					// 'intern' => 60,
-					// 'dinner' => 50
-				// ],
-				// strtotime('2022-01-01 00:00:00') => [ // before
-					// 'doctor' => 90,
-					// 'intern' => 70,
-					// 'dinner' => 60
-				// ]
-			// ],
-			// 'online' => [
-				// 'doctor' => 70,
-				// 'intern' => 35
-			// ]
-		// ]
+		'en' => [
+			'offline' => [
+				strtotime('2023-05-21 00:00:00') => [ // before
+					'doctor' => 150,
+					'intern' => 100,
+					'dinner' => 70
+				],
+				strtotime('2023-06-21 00:00:00') => [ // before
+					'doctor' => 200,
+					'intern' => 150,
+					'dinner' => 100
+				],
+				strtotime('2024-01-01 00:00:00') => [ // before
+					'doctor' => 250,
+					'intern' => 200,
+					'dinner' => 130
+				]
+			],
+			'online' => [
+				'doctor' => 100,
+				'intern' => 70
+			]
+		]
 	];
 	
 	$now = time();
@@ -132,7 +132,7 @@
 			else {
 				$description = "Retina " . YEAR . ": "
 					. $name . " (" . $email . "): "
-					. ($degree === "doctor" ? "Doctor" : "UVRS member or intern")
+					. ($degree === "doctor" ? "Doctor" : "Intern or member of UVRS")
 					. (($dinner && !$online) ? " + dinner" : "")
 					. ($online ? " ONLINE" : "");
 
