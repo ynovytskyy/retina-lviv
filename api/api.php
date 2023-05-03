@@ -226,11 +226,11 @@
 			// Send confirmation email to the client
 			if ($status != "error") {
 				if ($lang === "uk") {
-					$message = "Вітаємо! Ви успішно зареєструвалися на конференцію Retina Lviv " . YEAR;
+					$message = buildConfirmationEmailHtml("uk");
 					$subject = "Реєстрація на конференцію Retina Lviv " . YEAR;
 				}
 				else {
-					$message = "Congratulations! You have successfully registered for Retina Lviv " . YEAR;
+					$message = buildConfirmationEmailHtml("en");
 					$subject = "Registration for Retina Lviv " . YEAR;
 				}
 				$mail2 = new PHPMailer();
@@ -268,3 +268,17 @@
 		echo "{'error': '" . $message . "'}";
 		die();
 	}
+	
+	function buildConfirmationEmailHtml($langKey) {
+		$html = file_get_contents(__DIR__ . "/registration-confirmation.html");
+		if ($langKey == "uk") {
+			$html = str_replace("[langKey]", "uk", $html);
+			$html = str_replace("[siteSubPath]", "", $html);
+		}
+		else {
+			$html = str_replace("[langKey]", "en", $html);
+			$html = str_replace("[siteSubPath]", "/en.html", $html);
+		}
+		return $html;
+	}
+	
