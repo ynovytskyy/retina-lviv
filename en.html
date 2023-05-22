@@ -126,13 +126,13 @@
 				}
 				else {
 					if ($("input[name=isDoctor]:checked").val() === "doctor") {
-						amount = 150;
+						amount = 200;
 					}
 					else {
-						amount = 100;
+						amount = 150;
 					}
 					if ($("#dinner").is(":checked")) {
-						amount += 70;
+						amount += 100;
 					}
 				}
 				$("#total-money").html(amount);
