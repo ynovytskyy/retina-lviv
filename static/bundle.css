@@ -11281,7 +11281,7 @@ body {
 }
 
 .registration .card-body {
-  min-height: 268px;
+  /* min-height: 268px; */
 }
 
 #registration-modal{
