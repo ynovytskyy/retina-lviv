@@ -11277,11 +11277,18 @@ body {
   border-bottom-right-radius: 9px;
 }
 .registration .card-header {
-  min-height: 80px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .registration .card-body {
-  /* min-height: 268px; */
+  min-height: 268px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #registration-modal{
