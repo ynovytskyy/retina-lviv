@@ -6,11 +6,11 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '0');
 	
-	define("LIQPAY_PUBLIC_KEY", "i54342120268");
-	define("LIQPAY_PRIVATE_KEY", "gk1Fxl4AD1NNgtqzqPVNnxD0Q1fFfr6hQrV1ImnU");
-	define("GMAIL_LOGIN", "erebor@oculus.lviv.ua");
-	define("GMAIL_PASS", "RqeXDankge");
-	define("ADMIN_EMAIL", "retinalviv@gmail.com");
+	define("LIQPAY_PUBLIC_KEY", "");
+	define("LIQPAY_PRIVATE_KEY", "");
+	define("GMAIL_LOGIN", "");
+	define("GMAIL_PASS", "");
+	define("ADMIN_EMAIL", "");
 	define("YEAR", "2023");
 	
 	require(__DIR__ . "/vendor/autoload.php");
