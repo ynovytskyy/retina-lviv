@@ -195,10 +195,11 @@
 					const dinner = $("#dinner").is(":checked");
 					const online = $("#online").is(":checked");
 					const name = $("#name").val();
+					const birthdate = $("#birthdate").val();
 					const email = $("#email").val();
-					const country = $("#register-country").val();
-					const city = $("#register-city").val();
 					const phone = $("#phone").val();
+					const workPlace = $("#work-place").val();
+					const position = $("#position").val();
 					const message = $("#message").val();
 
 					$("#registration-modal").hide();
@@ -227,14 +228,15 @@
 									data: {
 										status: data.status,
 										name,
+										birthdate,
 										email,
+										phone,
+										workPlace,
+										position,
+										message,
 										degree,
 										dinner,
 										online,
-										country,
-										city,
-										phone,
-										message,
 										lang: 'uk'
 									},
 									success: (res) => {
@@ -587,42 +589,67 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-									<div class="form-group"><label for="name">Ім'я та прізвище</label><input
+									<div class="form-group">
+										<label for="name">Прізвище, імʼя, по-батькові</label>
+										<input
 											class="form-control" id="name" name="name" type="text"
-											placeholder="Ім&#39;я та прізвище" aria-describedby="name" required="true"
+											placeholder="Прізвище, ім&#39;я, по-батькові" aria-describedby="name" required="true"
 											autofocus="true"
 											style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="birthdate">Дата народження</label>
+										<input	class="form-control"
+												style="line-height: 16px;"
+												id="birthdate"
+												type="date"
+												name="birthdate"
+												aria-describedby="date of birth" required="true" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 									<div class="form-group"><label for="email">Email</label><input class="form-control"
 											id="email" type="email" name="email" placeholder="Email"
 											aria-describedby="email" required="true"></div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-									<div class="form-group"><label for="register-country">Країна</label><input
-											class="form-control" id="register-country" name="register-country"
-											type="text" placeholder="Країна" aria-describedby="register country"
-											required="true" value="Україна"></div>
-								</div>
-								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-									<div class="form-group"><label for="email">Місто</label><input class="form-control"
-											id="register-city" type="text" name="register-city" placeholder="Місто"
-											aria-describedby="register city" required="true"></div>
-								</div>
-							</div>
-							<div class="row">
 								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 									<div class="form-group"><label for="phone">Телефон</label><input
 											class="form-control" id="phone" type="tel" name="phone"
 											placeholder="Телефон" aria-describedby="phone" required="true"></div>
 								</div>
+							</div>
+							<div class="row">
 								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-									<div class="form-group"><label for="phone">Повідомлення</label><textarea
+									<div class="form-group">
+										<label for="work-place">Місце роботи</label>
+										<input
+											class="form-control" id="work-place" name="work-place"
+											type="text" placeholder="Місце роботи" aria-describedby="place of work"
+											required="true">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="position">Посада</label>
+										<input class="form-control"
+											id="position" type="text" name="position" placeholder="Посада"
+											aria-describedby="position" required="true">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="message">Повідомлення</label>
+										<textarea
 											class="form-control" id="message" name="message" placeholder="Повідомлення"
-											aria-describedby="message" rows="4" width="100%"></textarea></div>
+											aria-describedby="message" rows="4" width="100%">
+										</textarea>
+									</div>
 								</div>
 							</div>
 							<div class="row">
@@ -660,6 +687,7 @@
 
 								</div>
 							</div>
+							<div class="row precaution">Натиснувши кнопку "Зареєструватись" я даю згоду на обробку моїх персональних даних. <br />Дані будуть використовуватись для формування Сертифікату БПР</div>
 							<div class="row precaution">Увага: для завершення реєстрації Вам необхідно буде оплатити
 								участь у конференції.</div>
 						</div>
