@@ -18,7 +18,6 @@
 		<link rel="stylesheet" type="text/css" href="./static/bundle.css?13">
 		<link rel="stylesheet" type="text/css" href="./static/banner-styles.css">
 		<link rel="stylesheet" type="text/css" href="./static/iconochive.css">
-		<script type="text/javascript" src="./static/analytics.js"></script>
 	</head>
 
 	<body class="index scrollme page-scroll" id="page-top" data-gr-c-s-loaded="true">
@@ -144,7 +143,7 @@
 			$(document).ready(() => {
 				calcAmount();
 
-				$("#registration-button").click(() => {
+				$(".registration-button").click(() => {
 					$("#registration-modal").show();
 				});
 
@@ -241,6 +240,9 @@
 									},
 									success: (res) => {
 										console.log(res);
+										var url = new URL(window.location.href);
+										var queryString = url.search;
+										window.location.href = "/success.html" + queryString;
 									}
 								});
 							});
@@ -328,7 +330,7 @@
 							<div class="btn btn-default btn-xl nav-btnee">Програма</div>
 						</a-->
 						<a class="page-scroll">
-							<div class="btn btn-default btn-xl nav-btnee" id="registration-button">Реєстрація онлайн
+							<div class="btn btn-default btn-xl nav-btnee registration-button">Реєстрація онлайн
 							</div>
 						</a>
 						<a class="page-scroll" href="#put-theme">
@@ -808,6 +810,16 @@
 				</div>
 			</div>
 		</div>
+
+		<br />
+		<br />
+		<br />
+
+		<center>
+			<a class="page-scroll">
+				<div class="btn btn-default btn-xl nav-btnee registration-button">Реєстрація онлайн</div>
+			</a>
+		</center>
 
 		<br />
 		<br />
