@@ -15,7 +15,6 @@
 		<link rel="stylesheet" type="text/css" href="./static/bundle.css?12">
 		<link rel="stylesheet" type="text/css" href="./static/banner-styles.css">
 		<link rel="stylesheet" type="text/css" href="./static/iconochive.css">
-		<script type="text/javascript" src="./static/analytics.js"></script>
 	</head>
 
 	<body class="index scrollme page-scroll" id="page-top" data-gr-c-s-loaded="true">
@@ -141,7 +140,7 @@
 			$(document).ready(() => {
 				calcAmount();
 
-				$("#registration-button").click(() => {
+				$(".registration-button").click(() => {
 					$("#registration-modal").show();
 				});
 
@@ -238,6 +237,9 @@
 									},
 									success: (res) => {
 										console.log(res);
+										var url = new URL(window.location.href);
+										var queryString = url.search;
+										window.location.href = "/success-en.html" + queryString;
 									}
 								});
 							});
@@ -325,7 +327,7 @@
 						<!--a class="page-scroll" href="#schedule">
 							<div class="btn btn-default btn-xl nav-btnee">Program</div>
 						</a-->
-						<a class="page-scroll" id="registration-button">
+						<a class="page-scroll registration-button">
 							<div class="btn btn-default btn-xl nav-btnee">Registration online</div>
 						</a>
 						<a class="page-scroll" href="#put-theme">
@@ -799,6 +801,20 @@
 				</div>
 			</div>
 		</div>
+		
+		<br />
+		<br />
+		<br />
+
+		<center>
+			<a class="page-scroll">
+				<div class="btn btn-default btn-xl nav-btnee registration-button">Registration online</div>
+			</a>
+		</center>
+
+		<br />
+		<br />
+		<br />
 
 		<!--div class="container tezy" id="schedule">
 			<div class="row">
