@@ -11197,8 +11197,8 @@ body {
 }
 
 .partners .partners-column {
-  flex: 25%;
-  max-width: 25%;
+  flex: 33%;
+  max-width: 33%;
   padding: 10px 4px;
   text-align: center;
   display: flex;
